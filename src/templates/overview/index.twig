@@ -1,0 +1,160 @@
+{% extends 'layouts/default.twig' %}
+{% block title %}基本{% endblock %}
+
+{% block content %}
+<h1>感想</h1>
+http://twig.sensiolabs.org/documentation
+<p>
+  テンプレートエンジンのあるべき論を追求した結果、不便なものになっている気がする。<br>
+  設計は綺麗なのだろう。
+</p>
+いいところ
+<ul>
+  <li>エラーが起きた時に、テンプレートファイルの行番号を教えてくれる</li>
+</ul>
+悪いところ
+<ul>
+  <li>クラス定数の表記がとても面倒。constant() + 2重バックスラッシュが必要</li>
+  <li>クラスフィールド、クラスメソッドにアクセスできない。プラグインを作る必要あり。それでも使いづらい。</li>
+  <li>for, foreachループの構文がPHPと違う</li>
+  <li>論理演算子がPHPと違う。&& || ! が使えず、AND OR NOT となる。</li>
+  <li>=== 演算子がPHPと違う。is same as となる。</li>
+  <li>whileループがない</li>
+</ul>
+その他の特徴
+<ul>
+  <li>テンプレートのキャッシュファイルは更新されない。自分で削除する。</li>
+  <li>テンプレートエンジンとしての構文に拘った結果、PHP構文との乖離が大きくなっている。</li>
+  <li>テンプレートエンジンとしての姿に拘った結果、自由の利かないものになっている。プラグイン追加で対応はできるものの、それでも使いづらいケースはある。</li>
+  <li>
+    <ul>
+      <li>構文に拘った結果、PHPの構文との乖離が大きい</li>
+      <li>キャストはできない。テンプレートに渡す前に揃えておくべきだから。</li>
+    </ul>
+  </li>
+</ul>
+
+
+<h2>変数</h2>
+<dl>
+  <dt>スカラー</dt><dd>{{var}}</dd>
+  <dt>配列</dt><dd>{{arr1[0]}}</dd>
+  <dt>連想配列</dt><dd>{{arr2['key1']}}</dd>
+</dl>
+
+
+<h2>オブジェクト</h2>
+<dl>
+  <dt>メソッド</dt>
+  <dd>{{user.getFullName()}}</dd>
+
+  <dt>クラス定数</dt>
+  <dd>{{constant('Poppy\\TemplateStudy\\Def\\Gender::MALE')}}</dd>
+
+  <dt>クラスメソッド</dt>
+  <dd>{{staticCall('Poppy\\TemplateStudy\\Def\\Gender', 'getGenderLabel', [constant('Poppy\\TemplateStudy\\Def\\Gender::MALE')])}}</dd>
+</dl>
+
+
+<h1>制御構造</h1>
+<h2>if</h2>
+{% if (user.getGender() == constant('Poppy\\TemplateStudy\\Def\\Gender::MALE')) %}
+男です
+{% elseif (user.getGender() == constant('Poppy\\TemplateStudy\\Def\\Gender::FEMALE')) %}
+女です
+{% else %}
+不明です
+{% endif %}
+
+
+<h2>forループ</h2>
+{% for i in 0 .. arr1|length -1 %}
+<ul>
+  <li>{{i}} => {{arr1[i]}}</li>
+</ul>
+{% endfor %}
+
+
+<h2>foreachループ</h2>
+{% for k,v in arr2 %}
+<ul>
+  <li>{{k}} => {{v}}</li>
+</ul>
+{% endfor %}
+
+
+<h2>whileループ</h2>
+存在しない
+
+
+<h2>特殊：空考慮のforループ</h2>
+存在しない
+
+
+<h2>特殊：空考慮のforeachループ</h2>
+存在しない
+
+
+<h1>演算</h1>
+<h2>四則演算</h2>
+<dl>
+  <dt>1 + 2</dt><dd>{{1 + 2}}</dd>
+</dl>
+
+
+<h2>論理演算</h2>
+<dl>
+  <dt>true AND false</dt><dd>{{(true and false)|number_format}}</dd>
+  <dt>true OR false</dt><dd>{{(true or false)|number_format}}</dd>
+  <dt>!true</dt><dd>{{(not true)|number_format}}</dd>
+</dl>
+
+
+<h2>比較演算</h2>
+<dl>
+  <dt>1 == '1'</dt><dd>{{(1 == '1')|number_format}}</dd>
+  <dt>1 === '1'</dt><dd>{{(1 is same as('1'))|number_format}}</dd>
+  <dt>1 >= 1</dt><dd>{{(1 >= 1)|number_format}}</dd>
+  <dt>1 > 1</dt><dd>{{(1 > 1)|number_format}}</dd>
+  </dl>
+
+
+<h2>三項演算</h2>
+<dl>
+  <dt>true ? 'yes' : 'no'</dt><dd>{{ true ? 'yes' : 'no' }}</dd>
+  <dt>false ? 'yes' : 'no'</dt><dd>{{ false ? 'yes' : 'no' }}</dd>
+</dl>
+
+
+<h2>エスケープ</h2>
+<dl>
+  <dt>default</dt><dd>{{htmlString}}</dd>
+  <dt>raw</dt><dd>{{htmlString|raw}}</dd>
+  <dt>htmlEscape</dt><dd>{{htmlString|e('html')}}</dd>
+  <dt>urlencode</dt><dd>{{htmlString|url_encode}}</dd>
+
+  <dt>デリミタエスケープ</dt><dd>{{ '{{' }} test }}</dd>
+</dl>
+
+
+<h1>include</h1>
+{% include './overview/include/list.twig' with {'list': arr2} %}
+
+
+<h1>その他</h1>
+<dl>
+  <dt>コメントアウト</dt><dd>{#コメント#}</dd>
+  <dt>配列カウント</dt><dd>{{arr1|length}}</dd>
+
+  <dt>dump</dt><dd>{{dump(arr1)}}</dd>
+  <dt>truncate</dt><dd>{{1234567890|slice(0,5)}}</dd>
+  <dt>number_format</dt><dd>{{'12345'|number_format}}</dd>
+  <dt>json_encode</dt><dd>{{arr1|json_encode(JSON_HEX_TAG,JSON_HEX_APOS,JSON_HEX_QUOT)}}</dd>
+
+  <dt>システム日付</dt><dd>{{'now'|date('Y-m-d H:i:s')}}</dd>
+  <dt>変数作成</dt><dd>{% set newVar='hoge' %}{{newVar}}</dd>
+
+  <dt>文字列結合</dt><dd>{{var~var}}</dd>
+  <dt>文字列結合</dt><dd>{{ user.getFullName()~user.getFullName() }}</dd>
+</dl>
+{% endblock %}

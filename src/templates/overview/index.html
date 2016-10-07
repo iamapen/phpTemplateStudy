@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <title>PHPテンプレートおべんきょ - PHPTAL-1.3 基本</title>
+
+  <link rel="stylesheet" href="/css/ress.css"/>
+  <link rel="stylesheet" href="/css/main.css"/>
+</head>
+
+<body>
+
+<div class="container">
+<h1>感想</h1>
+https://phptal.org/manual/ja/
+<p>
+  HTMLをそのまま使えるのが最大の魅力。<br/>
+  パーツ化、レイアウト化はできないのだろうな。<br/>
+  もし、HTMLをそのまま使えないケースが出てきたら、一気に魅力が下がる。<br/>
+</p>
+いいところ
+<ul>
+  <li>テンプレートがそのままブラウザで表示できる</li>
+  <li>HTMLデザイナの作ったHTMLのままプログラマが作業できる。共同作業もできるかもしれない。</li>
+</ul>
+悪いところ
+<ul>
+  <li>use が使えないのでクラス定数の名前空間を短くできない。が、思想的に仕方ないかもしれない。</li>
+</ul>
+その他の特徴
+<ul>
+  <li>変数の頭の $ を取ったり、-> を . にしないといけなかったりするが、わりとPHPコードは書ける</li>
+</ul>
+
+
+<h2>変数</h2>
+<dl>
+  <dt>スカラー</dt><dd tal:content="var">{{$var}}</dd>
+  <dt>配列</dt><dd tal:content="arr1/0">{{$arr1[0]}}</dd>
+  <dt>連想配列</dt><dd tal:content="arr2/key1">{{$arr2['key1']}}</dd>
+</dl>
+
+
+<h2>オブジェクト</h2>
+<dl>
+  <dt>メソッド</dt>
+  <dd tal:content="php:user->getFullName()">{{$user->getFullName()}}</dd>
+
+  <dt>クラス定数</dt>
+  <dd tal:content="php:Poppy\TemplateStudy\Def\Gender::MALE">{{Poppy\TemplateStudy\Def\Gender::MALE}}</dd>
+
+  <dt>クラスメソッド</dt>
+  <dd tal:content="php:Poppy\TemplateStudy\Def\Gender::getGenderLabel(Poppy\TemplateStudy\Def\Gender::MALE)">{{Poppy\TemplateStudy\Def\Gender::getGenderLabel(Poppy\TemplateStudy\Def\Gender::MALE)}}</dd>
+</dl>
+
+
+<h1>制御構造</h1>
+<h2>if</h2>
+<span tal:condition="php: user.getGender() === Poppy\TemplateStudy\Def\Gender::MALE">男です</span>
+<span tal:condition="php: user.getGender() === Poppy\TemplateStudy\Def\Gender::FEMALE">女です</span>
+<span tal:condition="php: !in_array(user.getGender(), array_keys(Poppy\TemplateStudy\Def\Gender::getGenderList()))">不明です</span>
+
+
+<h2>forループ</h2>
+ない？
+
+
+<h2>foreachループ</h2>
+<ul>
+  <li tal:repeat="v arr1"><span tal:content="repeat/v/index">{{$i}}</span> => <span tal:content="v">{{$arr1[$i]}}</span></li>
+</ul>
+
+
+<h2>whileループ</h2>
+ない？
+
+
+<h2>特殊：空考慮のforループ</h2>
+ない？
+
+
+<h2>特殊：空考慮のforeachループ</h2>
+専用の機能はないがこう実装する。
+<ul>
+  <li tal:repeat="v arr1"><span tal:content="repeat/v/index">{{$i}}</span> => <span tal:content="v">{{$arr1[$i]}}</span></li>
+  <li tal:condition="php:empty([])">empty</li>
+</ul>
+
+<ul>
+  <li tal:repeat="v php:[]"><span tal:content="repeat/v/index">{{$i}}</span> => <span tal:content="v">{{$arr1[$i]}}</span></li>
+  <li tal:condition="php:empty([])">empty</li>
+</ul>
+
+
+<h1>演算</h1>
+<h2>四則演算</h2>
+<dl>
+  <dt>1 + 2</dt><dd tal:content="php:1+2">{{1 + 2}}</dd>
+</dl>
+
+
+<h2>論理演算</h2>
+<dl>
+  <dt>true AND false</dt><dd tal:content="php: true && false">{{number_format(true && false)}}</dd>
+  <dt>true OR false</dt><dd tal:content="php: true || false">{{number_format(true || false)}}</dd>
+  <dt>!true</dt><dd tal:content="php: !true">{{number_format(!true) }}</dd>
+</dl>
+
+
+<h2>比較演算</h2>
+<dl>
+  <dt>1 == '1'</dt><dd tal:content="php:1=='1'">{{number_format(1 == '1')}}</dd>
+  <dt>1 === '1'</dt><dd tal:content="php:1==='1'">{{number_format(1 === '1')}}</dd>
+  <dt>1 >= 1</dt><dd tal:content="php:1 >= 1">{{number_format(1 >= 1)}}</dd>
+  <dt>1 > 1</dt><dd tal:content="php:1 > 1">{{number_format(1 > 1)}}</dd>
+</dl>
+
+
+<h2>三項演算</h2>
+<dl>
+  <dt>true ? 'yes' : 'no'</dt><dd tal:content="php:true? 'yes' : 'no'">{{true ? 'yes' : 'no'}}</dd>
+  <dt>false ? 'yes' : 'no'</dt><dd tal:content="php:false? 'yes' : 'no'">{{false ? 'yes' : 'no'}}</dd>
+</dl>
+
+
+<h2>エスケープ</h2>
+<dl>
+  <dt>default</dt><dd tal:content="htmlString">{{$htmlString}}</dd>
+  <dt>raw</dt><dd i18n:translate="structure htmlString">{!! $htmlString !!}</dd>
+  <dt>htmlEscape</dt><dd>なし</dd>
+  <dt>urlencode</dt><dd tal:content="php:rawurlencode(htmlString)"></dd>
+
+  <dt>デリミタエスケープ</dt><dd tal:replace="string:$$user">@{{ test }}</dd>
+</dl>
+
+
+<h1>include</h1>
+存在しない
+
+
+<h1>その他</h1>
+<dl>
+  <dt>コメントアウト</dt><dd tal:comment="これはコメント">{{--コメント--}}</dd>
+  <dt>配列カウント</dt><dd tal:content="php:count(arr1)">{{count($arr1)}}</dd>
+
+  <dt>dump</dt><dd>ない</dd>
+  <dt>truncate</dt><dd tal:content="php:str_limit(1234567890, 5)">{{str_limit(1234567890, 5)}}</dd>
+  <dt>number_format</dt><dd tal:content="php:number_format('12345')">{{number_format('12345')}}</dd>
+  <dt>json_encode</dt><dd tal:content="php:json_encode(arr1, JSON_HEX_TAG|JSON_HEX_APOS |JSON_HEX_QUOT)"></dd>
+
+  <dt>システム日付</dt><dd tal:content="php:date('Y-m-d H:i:s')">{{date('Y-m-d H:i:s')}}</dd>
+  <dt>変数作成</dt><dd tal:define="global newVar string:hoge" tal:content="newVar"><?php $newVar='hoge'?>{{$newVar}}</dd>
+
+  <dt>文字列結合</dt><dd tal:content="php:var . var">{{$var.$var}}</dd>
+  <dt>文字列結合</dt><dd tal:content="php:user->getFullName() . user->getFullName()">{{$user->getFullName().$user->getFullName()}}</dd>
+</dl>
+</div>
+
+</body>
+</html>
