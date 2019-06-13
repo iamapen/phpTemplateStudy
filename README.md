@@ -1,7 +1,7 @@
 PHPテンプレートエンジン比較
 ====
 
-Blade-5.3, PHPTAL-1.3, Twig, Smarty-3.1, Plates-3.3.0 の記法を比較したもの
+Pure PHP7, Blade-5.3, PHPTAL-1.3, Twig, Smarty-3.1, Plates-3.3.0 の記法を比較したもの
 
 
 # INSTALL
