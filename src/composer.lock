@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "2535695696ccec783b6142102dd66320",
-    "content-hash": "d66014f7df9f7b1bc2b3801cf406e36f",
+    "content-hash": "bd391e7141fc15b998d5b3cff15b4786",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -72,7 +71,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-11-06 14:35:42"
+            "time": "2015-11-06T14:35:42+00:00"
         },
         {
             "name": "illuminate/container",
@@ -115,7 +114,7 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "https://laravel.com",
-            "time": "2016-10-02 01:14:30"
+            "time": "2016-10-02T01:14:30+00:00"
         },
         {
             "name": "illuminate/contracts",
@@ -157,7 +156,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2016-09-26 20:36:27"
+            "time": "2016-09-26T20:36:27+00:00"
         },
         {
             "name": "illuminate/events",
@@ -202,7 +201,7 @@
             ],
             "description": "The Illuminate Events package.",
             "homepage": "https://laravel.com",
-            "time": "2016-08-12 14:24:30"
+            "time": "2016-08-12T14:24:30+00:00"
         },
         {
             "name": "illuminate/filesystem",
@@ -252,7 +251,7 @@
             ],
             "description": "The Illuminate Filesystem package.",
             "homepage": "https://laravel.com",
-            "time": "2016-09-07 02:03:25"
+            "time": "2016-09-07T02:03:25+00:00"
         },
         {
             "name": "illuminate/support",
@@ -309,7 +308,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2016-10-02 01:14:47"
+            "time": "2016-10-02T01:14:47+00:00"
         },
         {
             "name": "illuminate/view",
@@ -357,7 +356,62 @@
             ],
             "description": "The Illuminate View package.",
             "homepage": "https://laravel.com",
-            "time": "2016-09-18 15:39:12"
+            "time": "2016-09-18T15:39:12+00:00"
+        },
+        {
+            "name": "league/plates",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/plates.git",
+                "reference": "b1684b6f127714497a0ef927ce42c0b44b45a8af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/plates/zipball/b1684b6f127714497a0ef927ce42c0b44b45a8af",
+                "reference": "b1684b6f127714497a0ef927ce42c0b44b45a8af",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 | ^7.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.4",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Plates\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Plates, the native PHP template system that's fast, easy to use and easy to extend.",
+            "homepage": "http://platesphp.com",
+            "keywords": [
+                "league",
+                "package",
+                "templates",
+                "templating",
+                "views"
+            ],
+            "time": "2016-12-28T00:14:17+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -405,7 +459,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-04-03 06:00:07"
+            "time": "2016-04-03T06:00:07+00:00"
         },
         {
             "name": "phptal/phptal",
@@ -453,7 +507,7 @@
                 "template engine",
                 "zope"
             ],
-            "time": "2014-03-15 19:29:30"
+            "time": "2014-03-15T19:29:30+00:00"
         },
         {
             "name": "psr/log",
@@ -500,7 +554,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-09-19 16:02:08"
+            "time": "2016-09-19T16:02:08+00:00"
         },
         {
             "name": "smarty/smarty",
@@ -555,7 +609,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-08-07 18:46:49"
+            "time": "2016-08-07T18:46:49+00:00"
         },
         {
             "name": "symfony/debug",
@@ -612,7 +666,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-06 11:02:40"
+            "time": "2016-09-06T11:02:40+00:00"
         },
         {
             "name": "symfony/finder",
@@ -661,7 +715,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-28 00:11:12"
+            "time": "2016-09-28T00:11:12+00:00"
         },
         {
             "name": "twig/twig",
@@ -722,7 +776,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-05 18:57:41"
+            "time": "2016-10-05T18:57:41+00:00"
         },
         {
             "name": "windwalker/renderer",
@@ -779,7 +833,7 @@
                 "renderer",
                 "windwalker"
             ],
-            "time": "2016-07-18 11:05:31"
+            "time": "2016-07-18T11:05:31+00:00"
         },
         {
             "name": "windwalker/structure",
@@ -827,7 +881,7 @@
                 "structure",
                 "windwalker"
             ],
-            "time": "2016-07-18 11:04:07"
+            "time": "2016-07-18T11:04:07+00:00"
         }
     ],
     "packages-dev": [],
