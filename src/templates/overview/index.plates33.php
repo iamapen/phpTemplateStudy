@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var League\Plates\Template\Template $this
+ */
 use Poppy\TemplateStudy\Def;
 ?>
 <?php $this->layout('layouts/default.plates33', ['title'=>'基本'])?>
