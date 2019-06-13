@@ -97,15 +97,15 @@ empty
     <li>{{$k}} => {{$v}}</li>
   </ul>
 {foreachelse}
-empty
+  empty
 {/foreach}
 
 {foreach [] as $k=>$v}
-<ul>
-  <li>{{$k}} => {{$v}}</li>
-</ul>
+  <ul>
+    <li>{{$k}} => {{$v}}</li>
+  </ul>
 {foreachelse}
-empty
+  empty
 {/foreach}
 
 

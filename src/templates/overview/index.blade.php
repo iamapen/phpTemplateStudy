@@ -1,5 +1,5 @@
 <?php
-use Poppy\TemplateStudy\Def;
+use Poppy\TemplateStudy\Def;  // 利用していることをIDEが検知できない
 ?>
 @extends('layouts.default')
 @section('title', '基本')
@@ -62,7 +62,7 @@ https://readouble.com/laravel/5.1/ja/blade.html
 <h2>forループ</h2>
 @for($i=0; $i<count($arr1); $i++)
 <ul>
-    <li>{{$i}} => {{$arr1[$i]}}</li>
+  <li>{{$i}} => {{$arr1[$i]}}</li>
 </ul>
 @endfor
 
@@ -70,7 +70,7 @@ https://readouble.com/laravel/5.1/ja/blade.html
 <h2>foreachループ</h2>
 @foreach($arr2 as $k=>$v)
 <ul>
-    <li>{{$k}} => {{$v}}</li>
+  <li>{{$k}} => {{$v}}</li>
 </ul>
 @endforeach
 
@@ -162,6 +162,6 @@ https://readouble.com/laravel/5.1/ja/blade.html
   <dt>変数作成</dt><dd><?php $newVar='hoge'?>{{$newVar}}</dd>
 
   <dt>文字列結合</dt><dd>{{$var.$var}}</dd>
-  <dt>文字列結合</dt><dd>{{$user->getFullName().$user->getFullName()}}</dd>
+  <dt>文字列結合</dt><dd>{{$user->getFirstName().$user->getLastName()}}</dd>
 </dl>
 @endsection
